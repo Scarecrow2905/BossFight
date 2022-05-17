@@ -12,7 +12,7 @@ namespace Bossfight
         public int Health;
         public int Strength;
         public int Stamina;
-        //private int _MaxStamina;
+        private int _MaxStamina;
 
         // Constructor 
         public GameCharacter(int aHealth, int aStrength, int aStamina) // <-- This is the constructor with parameters. "a" for Arguments
