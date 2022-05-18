@@ -9,27 +9,47 @@ namespace Bossfight
     internal class GameCharacter
     {
         // Properties for hero and boss
+        public string Name;
         public int Health;
         public int Strength;
         public int Stamina;
         private int _MaxStamina;
 
         // Constructor 
-        public GameCharacter(int aHealth, int aStrength, int aStamina) // <-- This is the constructor with parameters. "a" for Arguments
+        public GameCharacter(string aName, int aHealth, int aStrength, int aStamina) // <-- This is the constructor with parameters. "a" for Arguments
         {
+            Name = aName;
             Health = aHealth;
             Strength = aStrength;
             Stamina = aStamina;
+            _MaxStamina = aStamina;
         }
 
         // Methods
-        public void Fight(int aStrength)
+        public bool Fight(int dmg, GameCharacter opponent)
         {
             if (Stamina == 0)
             {
-                Console.WriteLine("Out of stamina!!");
+                Recharge();
+                return false;
                 
             }
+
+            if (opponent.Health - dmg < 0)
+            {
+                opponent.Health = 0;
+            }
+            else opponent.Health -= dmg;
+            
+            
+            Stamina -= 10;
+            return true;
+
+        }
+
+        public void Recharge()
+        {
+            Stamina = _MaxStamina;
         }
 
     }
